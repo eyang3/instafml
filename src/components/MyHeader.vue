@@ -77,6 +77,7 @@ export default defineComponent({
   width: 100%;
   position: absolute;
 }
+
 .default {
   color: #ffffff;
   border: 1px solid #fff;
