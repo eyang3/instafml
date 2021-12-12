@@ -23,39 +23,19 @@ import Button from 'primevue/button';
 
 import 'primeflex/primeflex.css';
 
-import MyHeader from '@/components/MyHeader.vue'; // @ is an alias to /src
-
 @Options({
   components: {
-    MyHeader,
     Button,
   },
 })
 export default class Home extends Vue {
-  enter() {
-    console.log(this);
-    console.log('do something');
+  enter(): void {
     this.$router.push('gallery');
   }
 }
 </script>
 
 <style scoped>
-.default {
-  color: #ffffff;
-  border: 1px solid #fff;
-  background: rgba(0, 0, 0, 0);
-}
-
-.default:hover {
-  border: 2px solid #fff;
-  background: rgba(0, 0, 0, 0);
-}
-
-.default:focus {
-  border: 2px solid #fff;
-  background: rgba(0, 0, 0, 0);
-}
 
 #landing {
   background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),

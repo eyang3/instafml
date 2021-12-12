@@ -1,5 +1,5 @@
 <template>
-  <my-header />
+  <Header />
   <router-view class="port" />
   <div id="nav" style="padding: 60px">
     <router-link to="/">Home</router-link> |
@@ -9,11 +9,11 @@
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
-import MyHeader from '@/components/MyHeader.vue'; // @ is an alias to /src
+import Header from '@/components/Header.vue'; // @ is an alias to /src
 
 @Options({
   components: {
-    MyHeader,
+    Header,
   },
 })
 export default class App extends Vue { }
@@ -48,4 +48,21 @@ html {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+.default {
+  color: #ffffff;
+  border: 1px solid #fff;
+  background: rgba(0, 0, 0, 0);
+}
+
+.default:hover {
+  border: 2px solid #fff;
+  background: rgba(0, 0, 0, 0);
+}
+
+.default:focus {
+  border: 2px solid #fff;
+  background: rgba(0, 0, 0, 0);
+}
+
 </style>

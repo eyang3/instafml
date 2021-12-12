@@ -262,7 +262,7 @@
 }
 .p-autocomplete-panel .p-autocomplete-items {
   padding: 0.5rem 0;
-}
+}x
 .p-autocomplete-panel .p-autocomplete-items .p-autocomplete-item {
   margin: 0;
   padding: 0.5rem 1rem;
@@ -1385,8 +1385,7 @@
   color: #6c757d;
 }
 .p-selectbutton .p-button.p-highlight {
-  background: #4CAF50;
-  border-color: #4CAF50;
+  border-color: #111111;
   color: #ffffff;
 }
 .p-selectbutton .p-button.p-highlight .p-button-icon-left,
@@ -1394,8 +1393,7 @@
   color: #ffffff;
 }
 .p-selectbutton .p-button.p-highlight:hover {
-  background: #449e48;
-  border-color: #449e48;
+  border-color: #111111;
   color: #ffffff;
 }
 .p-selectbutton .p-button.p-highlight:hover .p-button-icon-left,
@@ -1529,8 +1527,7 @@
   color: #6c757d;
 }
 .p-togglebutton.p-button.p-highlight {
-  background: #4CAF50;
-  border-color: #4CAF50;
+  border-color: #111111;
   color: #ffffff;
 }
 .p-togglebutton.p-button.p-highlight .p-button-icon-left,
@@ -1538,8 +1535,7 @@
   color: #ffffff;
 }
 .p-togglebutton.p-button.p-highlight:hover {
-  background: #449e48;
-  border-color: #449e48;
+  border-color: #111111;
   color: #ffffff;
 }
 .p-togglebutton.p-button.p-highlight:hover .p-button-icon-left,
@@ -1551,38 +1547,17 @@
 }
 
 .p-button {
-  color: #ffffff;
-  background: #4CAF50;
-  border: 1px solid #4CAF50;
+  background-color: #ffffff;
+  color: #444444;
+  border: 1px solid #444444;
   padding: 0.5rem 1rem;
   font-size: 1rem;
   border-radius: 3px;
 }
-.p-button:enabled:hover {
-  background: #449e48;
-  color: #ffffff;
-  border-color: #449e48;
+.p-button:hover {
+  box-shadow: 0 0 0 2px #d0d0d0;
 }
-.p-button:enabled:active {
-  background: #3d8c40;
-  color: #ffffff;
-  border-color: #3d8c40;
-}
-.p-button.p-button-outlined {
-  background-color: transparent;
-  color: #4CAF50;
-  border: 1px solid;
-}
-.p-button.p-button-outlined:enabled:hover {
-  background: rgba(76, 175, 80, 0.04);
-  color: #4CAF50;
-  border: 1px solid;
-}
-.p-button.p-button-outlined:enabled:active {
-  background: rgba(76, 175, 80, 0.16);
-  color: #4CAF50;
-  border: 1px solid;
-}
+
 .p-button.p-button-outlined.p-button-plain {
   color: #6c757d;
   border-color: #6c757d;
@@ -3781,14 +3756,12 @@
 }
 
 .p-fileupload-choose:not(.p-disabled):hover {
-  background: #449e48;
-  color: #ffffff;
-  border-color: #449e48;
+  color: #111111;
+  border-color: #111111;
 }
 .p-fileupload-choose:not(.p-disabled):active {
-  background: #3d8c40;
-  color: #ffffff;
-  border-color: #3d8c40;
+  color: #111111;
+  border-color: #111111 ;
 }
 
 .p-breadcrumb {

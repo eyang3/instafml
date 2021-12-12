@@ -14,7 +14,7 @@
           <span class="p-input-icon-left">
             <i class="pi pi-search" style="position: relative; left: 22px" />
             <InputText
-              size="50"
+              :style="{width: '70%'}"
               type="text"
               v-model="searchTerm"
               placeholder="Search"
@@ -46,7 +46,7 @@ import 'primeicons/primeicons.css';
 import '@/assets/custom.css';
 
 export default defineComponent({
-  name: 'MyHeader',
+  name: 'Header',
   components: {
     Button,
     InputText,
