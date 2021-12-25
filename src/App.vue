@@ -1,5 +1,6 @@
 <template>
-  <Header />
+  <Header @login="signup"/>
+  <sign-up v-model:visible="loginVisible" />
   <router-view class="port" />
   <div id="nav" style="padding: 60px">
     <router-link to="/">Home</router-link> |
@@ -8,15 +9,29 @@
 </template>
 
 <script lang="ts">
-import { Options, Vue } from 'vue-class-component';
+import { defineComponent } from 'vue';
 import Header from '@/components/Header.vue'; // @ is an alias to /src
+import SignUp from '@/components/SignUp.vue';
 
-@Options({
+export default defineComponent({
+  name: 'App',
   components: {
     Header,
+    SignUp,
   },
-})
-export default class App extends Vue { }
+  data() {
+    return {
+      loginVisible: false,
+    };
+  },
+  methods: {
+    signup() {
+      this.loginVisible = !this.loginVisible;
+      console.log('something is happening');
+    },
+  },
+});
+
 </script>
 
 <style>

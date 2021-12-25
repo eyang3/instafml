@@ -14,7 +14,7 @@
           <span class="p-input-icon-left">
             <i class="pi pi-search" style="position: relative; left: 22px" />
             <InputText
-              :style="{width: '70%'}"
+              :style="{ width: '70%' }"
               type="text"
               v-model="searchTerm"
               placeholder="Search"
@@ -24,12 +24,12 @@
       </div>
       <div class="p-col-1">
         <p style="vertical-align: middle; float: right">
-          <Button label="Login" class="default" />
+          <Button style="white-space: nowrap" label="Sign-up" class="default" @click="signup" />
         </p>
       </div>
       <div class="p-col-1">
-        <p style="vertical-align: middle; float: center; min-width: 100px">
-          <Button label="Sign-up" class="default" />
+        <p style="vertical-align: middle; float: left; min-width: 100px">
+          <Button label="Login" class="default" />
         </p>
       </div>
     </div>
@@ -50,6 +50,11 @@ export default defineComponent({
   components: {
     Button,
     InputText,
+  },
+  methods: {
+    signup() {
+      this.$emit('login', 'login');
+    },
   },
   data() {
     return {
