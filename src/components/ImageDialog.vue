@@ -25,6 +25,7 @@
       :customUpload="true"
       @uploader="local_upload"
       :auto="true"
+      ref="uploader"
     />
     <br />
     <InputText
@@ -99,7 +100,6 @@ export default defineComponent({
       formData.append('tags', this.imgtags);
       formData.append('image', img);
       const response = await axios.post('/api/upload_image', formData);
-      console.log(response);
     },
     close() {
       this.p_visible = !this.p_visible;
@@ -107,6 +107,7 @@ export default defineComponent({
     func() {
       console.log('this');
     },
+
     local_upload(event: HTMLInputElement): void {
       if (event != null) {
         const file = event!.files![0];
@@ -114,6 +115,8 @@ export default defineComponent({
         reader.onload = (fileEvent) => {
           this.option.img1 = fileEvent!.target!.result! as string;
           (this.$refs.cropper as VueCropperMethods).replace(fileEvent!.target!.result as string);
+          const m: any = this.$refs.uploader;
+          m.clear();
         };
         reader.readAsDataURL(file);
       }

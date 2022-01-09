@@ -1,33 +1,48 @@
 <template>
-  <Header @login="signup"/>
-  <sign-up v-model:visible="loginVisible" />
+  <Header @signup="signup" @login="login" />
+  <sign-up v-model:visible="signupVisible" />
+  <login v-model:visible="loginVisible" />
   <router-view class="port" />
   <div id="nav" style="padding: 60px">
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/about">About</router-link> |
+    <router-link to="/wtf">WTF</router-link>
+
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { VueCookieNext } from 'vue-cookie-next';
+import axios from 'axios';
+
 import Header from '@/components/Header.vue'; // @ is an alias to /src
 import SignUp from '@/components/SignUp.vue';
+import Login from '@/components/Login.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
     Header,
     SignUp,
+    Login,
   },
   data() {
     return {
       loginVisible: false,
+      signupVisible: false,
     };
+  },
+  mounted() {
+    const token = VueCookieNext.getCookie('auth');
+    axios.defaults.headers.common.Authorization = 'Bearer '.concat(token);
   },
   methods: {
     signup() {
+      this.signupVisible = !this.signupVisible;
+    },
+    login() {
       this.loginVisible = !this.loginVisible;
-      console.log('something is happening');
     },
   },
 });
@@ -79,5 +94,4 @@ html {
   border: 2px solid #fff;
   background: rgba(0, 0, 0, 0);
 }
-
 </style>

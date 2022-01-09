@@ -11,7 +11,7 @@
       </div>
       <div class="p-col-8">
         <p style="vertical-align: middle">
-          <span class="p-input-icon-left">
+          <span class="p-input-icon-left" style="display: inherit">
             <i class="pi pi-search" style="position: relative; left: 22px" />
             <InputText
               :style="{ width: '70%' }"
@@ -24,12 +24,17 @@
       </div>
       <div class="p-col-1">
         <p style="vertical-align: middle; float: right">
-          <Button style="white-space: nowrap" label="Sign-up" class="default" @click="signup" />
+          <Button
+            style="white-space: nowrap"
+            label="Sign-up"
+            class="default"
+            @click="signup"
+          />
         </p>
       </div>
       <div class="p-col-1">
         <p style="vertical-align: middle; float: left; min-width: 100px">
-          <Button label="Login" class="default" />
+          <Button label="Login" class="default" @click="login" />
         </p>
       </div>
     </div>
@@ -53,6 +58,9 @@ export default defineComponent({
   },
   methods: {
     signup() {
+      this.$emit('signup', 'signup');
+    },
+    login() {
       this.$emit('login', 'login');
     },
   },

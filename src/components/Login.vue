@@ -1,6 +1,6 @@
 <template>
   <Dialog
-    header="Sign up"
+    header="Login"
     v-model:visible="p_visible"
     :style="{ width: '35vw' }"
     @show="func"
@@ -8,7 +8,7 @@
     <div style="color: red">
       {{ error }}
     </div>
-    <br>
+    <br />
     <div class="loginform">
       <div style="padding-top: 25px">
         <span class="p-float-label">
@@ -27,18 +27,10 @@
           <label for="password">Password</label>
         </span>
       </div>
-      <div style="padding-top: 25px">
-        <span class="p-float-label">
-          <InputText id="password" size="26" type="password" v-model="samepw" />
-          <label for="password"
-            ><div v-bind:style="doesNotMatch">Verify Password</div></label
-          >
-        </span>
-      </div>
     </div>
     <template #footer>
       <Button label="Cancel" icon="pi pi-times" @click="close" />
-      <Button label="Create" icon="pi pi-check" @click="save" autofocus />
+      <Button label="Login" icon="pi pi-check" @click="save" autofocus />
     </template>
   </Dialog>
 </template>
@@ -46,13 +38,15 @@
 <script lang="ts">
 import Dialog from 'primevue/dialog';
 import { defineComponent } from 'vue';
+import { VueCookieNext } from 'vue-cookie-next';
+
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
-import axios from 'axios';
-import { signup } from '@/backendApi';
+import axios, { AxiosError } from 'axios';
+import { login } from '@/backendApi';
 
 export default defineComponent({
-  name: 'SignUp',
+  name: 'Login',
   components: {
     InputText,
     Button,
@@ -60,7 +54,7 @@ export default defineComponent({
   },
   data() {
     return {
-      email: '', password: '', samepw: '', error: ' ',
+      email: '', password: '', error: ' ',
     };
   },
   props: {
@@ -71,25 +65,20 @@ export default defineComponent({
       this.p_visible = !this.p_visible;
     },
     async save() {
-      if (this.password === this.samepw) {
-        try {
-          await axios.post(signup, { email: this.email, password: this.password });
-          this.p_visible = !this.p_visible;
-          this.error = '';
-        } catch (e) {
-          this.error = 'User Already Exists';
-        }
+      try {
+        const response = await axios.post(login, { email: this.email, password: this.password });
+        axios.defaults.headers.common.Authorization = 'Bearer '.concat(response.data.message);
+        VueCookieNext.setCookie('auth', response.data.message);
+        this.p_visible = !this.p_visible;
+        this.error = '';
+      } catch (e) {
+        const error = e as AxiosError;
+        this.error = error.response?.data.message;
       }
     },
   },
   emits: ['update:visible'],
   computed: {
-    doesNotMatch() {
-      if (this.samepw !== this.password) {
-        return { color: 'red' };
-      }
-      return {};
-    },
     p_visible: {
       get(): boolean {
         return this.visible;
